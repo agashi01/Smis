@@ -80,6 +80,12 @@
 }
 
 /* STILIZIMI  */
+html, body, #root {
+    height: 100% !important;
+    margin: 0;
+    padding: 0;
+  }
+
 .navbar-brand{
    /* background-color:#084298; */
 }
@@ -124,11 +130,60 @@ background-color: #4754cc !important;
   .tab-1 td{
     padding: 5px 10px !important;
   }
+  /* Stilizimi te provimet e paraqitura */
+  .cell-button{
+    width: 15%;
+  }
+
+  /* Stilizimi te paraqitja e provimeve */
+
+.dropdown-toggle{
+  width: 100%;
+  padding: 2px !important;
+  font-size: 14px !important;
+}
+.paraqitja-button{
+  width: 20% ;
+}
+.alert{
+  width: 95%;
+  margin-right: 20px;
+  padding-top: 8px !important;
+  padding-bottom: 10px !important;
+  font-size: 14px;
+  
+  
+}
+.alert-pp-blue{
+  margin: 20px;
+  
+}
+.cstm-alert .btn-close{
+  /* position: absolute; */
+  transform: translateY(-15%);
+}
+.zgjedh-programin{
+  display: flex;
+  border: 2px solid rgb(216, 216, 202);
+  border-radius: 5px;
+  width: 94%;
+  margin-left: 25px;
+  justify-content:flex-start;
+  align-items: center;
+  background-color: #ebf1f2;
+}
+.zgjedh-programin p{
+  margin: 10px;
+  color: #4d4d4d;
+}
+.regjsitroprogramin-button{
+  margin-left: 10px !important;
+}
 
    /*FOOTER  */
 
   .footer{
-    width: 100% !important;
+    /* width: 100% ; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -142,10 +197,7 @@ background-color: #4754cc !important;
     color: white;
     
 }
-.footer img{
-    width:25px;
-    vertical-align: middle;
-}
+
 .footer a,p{
     text-decoration: none;
     color:rgb(82, 90, 248);
@@ -155,7 +207,39 @@ background-color: #4754cc !important;
     color: rgb(255, 0, 0);
 }
 
+.form-label{
+  padding: 10px; 
+}
+.form-row {
+  display: flex;
+  align-items: center;
+  gap: 8px; 
+}
+
+.custom-label {
+  min-width: 120px;
+}
+
+.custom-input {
+width: min-content !important;
+background-color: #ededed !important;
+font-size: 14px !important;
+color: #5d5454 !important;
+}
+.container{
+  background-color: white;
+}
+
+
+
+
+
+
+
 /* FUNDI STILIZIMIT override */
+
+
+
   
 
 *,

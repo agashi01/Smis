@@ -3,8 +3,9 @@ import "../Transkripta/Style.css";
 import { useEffect } from "react";
 import $ from "jquery";
 import "datatables.net";
+import TabbedForm from "./TabbedForm";
 
-const ProvimetEParaqitura = () => {
+const Profili = () => {
   useEffect(() => {
     $("#datatablesSimple").DataTable({
       paging: false,
@@ -125,65 +126,14 @@ const ProvimetEParaqitura = () => {
         <div id="layoutSidenav_content">
           <main>
             <div className="container-fluid px-4">
-              <h2 className="mt-4">Provimet e paraqitura</h2>
+              <h2 className="mt-4">Profili im</h2>
               <ol className="breadcrumb mb-4">
                 <li className="breadcrumb-item">
                   <a href="index.html">Home</a>
                 </li>
-                <li className="breadcrumb-item active">
-                  Provimet e paraqitura
-                </li>
+                <li className="breadcrumb-item active">Profili im</li>
               </ol>
-              <div className="card mb-4"></div>
-            </div>
-
-            <div className="card-body">
-              <table
-                id="datatablesSimple"
-                className="table table-bordered table-striped table-hover table-compact force-border thin-cells tab-1"
-              >
-                <thead>
-                  <tr>
-                    <th className="kodi-lendes">Kodi</th>
-                    <th>Lenda</th>
-                    <th>Kategoria</th>
-                    <th>Profesori</th>
-                    <th>Nota</th>
-                    <th>Statusi i notes</th>
-                    <th>Data vendosjes</th>
-                    <th className="cell-button">Anulo paraqitjen e provimit</th>
-                    <th className="cell-button">Refuzo noten</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>40DS201</td>
-                    <td>Bachelor</td>
-                    <td>I rregullt</td>
-
-                    <td>Blerim Zylfiu</td>
-                    <td>10</td>
-                    <td>Vendosur</td>
-                    <td>10.05.2025</td>
-                    <td>
-                      <button
-                        type="submit"
-                        class="btn btn-primary btn-sm butoni-transkriptes"
-                      >
-                        Anulo paraqitjen
-                      </button>
-                    </td>
-                    <td>
-                      <button
-                        type="submit"
-                        class="btn btn-primary btn-sm butoni-transkriptes"
-                      >
-                        Refuzo noten
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+              <TabbedForm />
             </div>
           </main>
         </div>
@@ -199,4 +149,4 @@ const ProvimetEParaqitura = () => {
   );
 };
 
-export default ProvimetEParaqitura;
+export default Profili;

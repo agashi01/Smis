@@ -3,8 +3,9 @@ import "../Transkripta/Style.css";
 import { useEffect } from "react";
 import $ from "jquery";
 import "datatables.net";
+import DropdownLigjeruesi from "./DropDownLigjeruesi";
 
-const ProvimetEParaqitura = () => {
+const ParaqitjaEProvimeve = () => {
   useEffect(() => {
     $("#datatablesSimple").DataTable({
       paging: false,
@@ -125,19 +126,71 @@ const ProvimetEParaqitura = () => {
         <div id="layoutSidenav_content">
           <main>
             <div className="container-fluid px-4">
-              <h2 className="mt-4">Provimet e paraqitura</h2>
+              <h2 className="mt-4">Paraqitja e provimeve</h2>
               <ol className="breadcrumb mb-4">
                 <li className="breadcrumb-item">
                   <a href="index.html">Home</a>
                 </li>
                 <li className="breadcrumb-item active">
-                  Provimet e paraqitura
+                  Paraqitja e provimeve
                 </li>
               </ol>
               <div className="card mb-4"></div>
             </div>
 
             <div className="card-body">
+              <div className="d-flex justify-content-center mt-5">
+                <div
+                  className="alert alert-danger alert-dismissible fade show text-center cstm-alert"
+                  role="alert"
+                >
+                  <strong>Kujdes!</strong> Të gjithë student e vitit të III para
+                  se të paraqitni provimet ju duhet të zgjedhni programin e
+                  studimit nga lista më poshtë.
+                  <button
+                    type="button"
+                    className="btn-close"
+                    data-bs-dismiss="alert"
+                    aria-label="Close"
+                  ></button>
+                </div>
+              </div>
+              <div className="zgjedh-programin">
+                <p>Zgjedhe programin</p>
+                <div>
+                  <DropdownLigjeruesi
+                    defaultText="Zgjedhe Programin"
+                    items={[
+                      "Inxhinieria e Sistemeve Softuerike",
+                      "Lavdim Menxhiqi",
+                      "Action three",
+                    ]}
+                  />
+                </div>
+                <div className="regjsitroprogramin-button">
+                  <button
+                    type="submit"
+                    class="btn btn-primary btn-sm butoni-transkriptes"
+                  >
+                    Regjistro programin
+                  </button>
+                </div>
+              </div>
+              <div
+                className="alert alert-info alert-dismissible fade show text-center alert-pp-blue cstm-alert"
+                role="alert"
+              >
+                <strong>Verejtje!</strong> Para se të paraqitni provimin, është
+                e domosdoshme të zgjedhni profesorin tek i cili e keni ndëgjuar
+                lëndën.
+                <button
+                  type="button"
+                  className="btn-close"
+                  data-bs-dismiss="alert"
+                  aria-label="Close"
+                ></button>
+              </div>
+
               <table
                 id="datatablesSimple"
                 className="table table-bordered table-striped table-hover table-compact force-border thin-cells tab-1"
@@ -146,13 +199,16 @@ const ProvimetEParaqitura = () => {
                   <tr>
                     <th className="kodi-lendes">Kodi</th>
                     <th>Lenda</th>
+                    <th>
+                      Kredit <br />
+                      ECTS
+                    </th>
+                    <th>Semestri</th>
                     <th>Kategoria</th>
-                    <th>Profesori</th>
-                    <th>Nota</th>
-                    <th>Statusi i notes</th>
-                    <th>Data vendosjes</th>
-                    <th className="cell-button">Anulo paraqitjen e provimit</th>
-                    <th className="cell-button">Refuzo noten</th>
+                    <th>Zgjidh profesorin</th>
+                    <th className="cell-button paraqitja-button">
+                      Paraqit provimin
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -163,22 +219,22 @@ const ProvimetEParaqitura = () => {
 
                     <td>Blerim Zylfiu</td>
                     <td>10</td>
-                    <td>Vendosur</td>
-                    <td>10.05.2025</td>
                     <td>
-                      <button
-                        type="submit"
-                        class="btn btn-primary btn-sm butoni-transkriptes"
-                      >
-                        Anulo paraqitjen
-                      </button>
+                      <DropdownLigjeruesi
+                        defaultText="Zgjedhe Ligjeruesin"
+                        items={[
+                          "Blerim Zylfiu",
+                          "Lavdim Menxhiqi",
+                          "Action three",
+                        ]}
+                      />
                     </td>
                     <td>
                       <button
                         type="submit"
                         class="btn btn-primary btn-sm butoni-transkriptes"
                       >
-                        Refuzo noten
+                        Paraqit provimin
                       </button>
                     </td>
                   </tr>
@@ -199,4 +255,4 @@ const ProvimetEParaqitura = () => {
   );
 };
 
-export default ProvimetEParaqitura;
+export default ParaqitjaEProvimeve;
