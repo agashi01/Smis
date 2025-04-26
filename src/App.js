@@ -5,17 +5,24 @@ import Transkripta from './Components/Transkripta/Transkripta';
 import ProvimetEParaqitura from './Components/ProvimetEParaqitura/ProvimetEParaqitura';
 import Orari from './Components/Orari/Orari';
 import DStudentet from './Components/Admin/DStudentet';
-import DStafi from './Components/Admin/DStafi';
-import DLenda from './Components/Admin/DLenda';
+
 import DGrupi from './Components/Admin/DGrupi';
+import ParaqitjaEProvimeve from './Components/ParaqitjaEProvimeve/ParaqitjaEProvimeve';
+import Profili from './Components/Profili/Profili';
 
 function App() {
   return (
     <div >
       {/* <Login/> */}
      {/* <Transkripta/> */}
+
      {/*<ProvimetEParaqitura/>*/}
      <DGrupi/>
+
+     {/* <ProvimetEParaqitura/> */}
+     <ParaqitjaEProvimeve/>
+     {/* <Profili/> */}
+
     </div>
   );
 }
