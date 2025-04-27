@@ -1,11 +1,11 @@
-
 import React from "react";
-import "./Style.css";
+import "../Transkripta/Style.css";
 import { useEffect } from "react";
 import $ from "jquery";
 import "datatables.net";
+import TabbedForm from "./TabbedForm";
 
-const Transkripta = () => {
+const Profili = () => {
   useEffect(() => {
     $("#datatablesSimple").DataTable({
       paging: false,
@@ -13,7 +13,6 @@ const Transkripta = () => {
       info: false,
     });
   }, []);
-
   return (
     <div className="sb-nav-fixed">
       {/* Top Navbar */}
@@ -127,81 +126,14 @@ const Transkripta = () => {
         <div id="layoutSidenav_content">
           <main>
             <div className="container-fluid px-4">
-              <h2 className="mt-4">Transkripta e notave</h2>
+              <h2 className="mt-4">Profili im</h2>
               <ol className="breadcrumb mb-4">
                 <li className="breadcrumb-item">
                   <a href="index.html">Home</a>
                 </li>
-                <li className="breadcrumb-item active">Transkripta</li>
+                <li className="breadcrumb-item active">Profili im</li>
               </ol>
-              <div className="card mb-4"></div>
-            </div>
-
-            <div className="card-body">
-              <table
-                id="datatablesSimple"
-                className="table table-bordered table-striped table-hover table-compact force-border thin-cells tab-1"
-              >
-                <thead>
-                  <tr>
-                    <th className="cell-drejtimi">Drejtimi</th>
-                    <th>Niveli</th>
-                    <th>Statusi</th>
-                    <th>Transkripta</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Shkenca Kompjuterike dhe Inxhinieri</td>
-                    <td>Bachelor</td>
-                    <td>I rregullt</td>
-                    <td>
-                      <button
-                        type="submit"
-                        class="btn btn-primary btn-sm butoni-transkriptes"
-                      >
-                        Gjenero Transkripten
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-
-              <table
-                id="datatablesSimple"
-                className="table table-bordered table-striped table-hover table-compact force-border thin-cells"
-              >
-                <thead>
-                  <tr>
-                    <th className="kodi-lendes">#</th>
-                    <th>Kodi</th>
-                    <th>Lenda</th>
-                    <th>ECTS</th>
-                    <th>Kategoria</th>
-                    <th>Nota Shkronje</th>
-                    <th>Statusi i Notes</th>
-                  </tr>
-                </thead>
-
-                <tbody>
-                  <tr>
-                    <td>2</td>
-                    <td>System Architect</td>
-                    <td>Edinburgh</td>
-                    <td>61</td>
-                    <td>2011/04/25</td>
-                    <td>$320,800</td>
-                  </tr>
-                  <tr>
-                    <td>1</td>
-                    <td>Accountant</td>
-                    <td>Tokyo</td>
-                    <td>63</td>
-                    <td>2011/07/25</td>
-                    <td>$170,750</td>
-                  </tr>
-                </tbody>
-              </table>
+              <TabbedForm />
             </div>
           </main>
         </div>
@@ -217,4 +149,5 @@ const Transkripta = () => {
   );
 };
 
-export default Transkripta;
+export default Profili;
+
