@@ -1,16 +1,26 @@
+import { useNavigate } from 'react-router-dom'; 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState, useEffect } from "react";
 import "./Style.css";
 import $ from "jquery";
 import "datatables.net";
+import { Link } from 'react-router-dom';
+
 
 const DStudentet = () => {
-  const [students, setStudents] = useState([]);
 
-  // Simulojmë një API ose databazë me disa të dhëna fillestare
+  const navigate = useNavigate(); 
+
+  const [students, setStudents] = useState([]);
+  const [departamentiFilter, setDepartamentiFilter] = useState('');
+  const [vitiFilter, setVitiFilter] = useState('');
+  const [statusiFilter, setStatusiFilter] = useState('');
+  const [semestriFilter, setSemestriFilter] = useState('');
+
+
+
   useEffect(() => {
     const fetchStudents = async () => {
-      // Normalisht këtu do bëje fetch në backend
       const data = [
         {
           id: 1,
@@ -19,11 +29,12 @@ const DStudentet = () => {
           email: 'arlind@example.com',
           gjinia: 'Mashkull',
           datelindja: '2000-05-10',
-          nrLeternjoftimit: 'A1234567',
-          vendbanimi: 'Prishtinë',
+          nrpersonal: 'A1234567',
           telefoni: '+38344123456',
           statusi: 'Aktiv',
-          vitiRegjistrimit: 2019
+          departamenti: 'Shkenca Kompjuterike',
+          vitiRegjistrimit: 2019,
+          semestri: 'Semestri 1'
         },
         {
           id: 2,
@@ -32,11 +43,27 @@ const DStudentet = () => {
           email: 'elira@example.com',
           gjinia: 'Femer',
           datelindja: '2001-02-15',
-          nrLeternjoftimit: 'B7654321',
-          vendbanimi: 'Ferizaj',
+          nrpersonal: 'B7654321',
           telefoni: '+38349123456',
           statusi: 'Aktiv',
-          vitiRegjistrimit: 2020
+          vitiRegjistrimit: 2020,
+          departamenti: 'Inxhinieri Softuerike',
+          semestri: 'Semestri 1'
+
+        },
+        {
+          id: 3,
+          emri: 'Era',
+          mbiemri: 'Hema',
+          email: 'elira@example.com',
+          gjinia: 'Femer',
+          datelindja: '2001-02-15',
+          nrpersonal: 'B7654321',
+          telefoni: '+38349123456',
+          statusi: 'Pasiv',
+          vitiRegjistrimit: 2020,
+          departamenti: 'Inxhinieri Softuerike',
+          semestri: 'Semestri 1'
         }
       ];
       setStudents(data);
@@ -45,173 +72,195 @@ const DStudentet = () => {
     fetchStudents();
   }, []);
 
+  const uniqueDepartamente = [...new Set(students.map(student => student.departamenti))];
+  const uniqueVitet = [...new Set(students.map(student => student.vitiRegjistrimit))];
+  const uniqueStatuset = [...new Set(students.map(student => student.statusi))];
+  const uniqueSemestrat = [...new Set(students.map(student => student.semestri))];
+  const filteredStudents = students.filter(student => {
+    return (
+      (departamentiFilter === '' || student.departamenti === departamentiFilter) &&
+      (vitiFilter === '' || student.vitiRegjistrimit.toString() === vitiFilter) &&
+      (statusiFilter === '' || student.statusi === statusiFilter) &&
+      (semestriFilter === '' || student.semestri === semestriFilter)
+    );
+  });
+
   return (
     <div className="sb-nav-fixed">
       {/* Top Navbar */}
       <nav className="sb-topnav navbar navbar-expand navbar-dark ">
-        {/* Navbar Brand */}
-        <a className="navbar-brand ps-3" href="index.html">
-          KOLEGJI UBT-SMIS
-        </a>
-
-        {/* Sidebar Toggle */}
-        <button
-          className="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
-          id="sidebarToggle"
-        >
+        <a className="navbar-brand ps-3" href="#">KOLEGJI UBT-SMIS</a>
+        <button className="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle">
           <i className="fas fa-bars"></i>
         </button>
-
-        {/* Navbar User Dropdown */}
-        <ul className="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-          <li className="nav-item dropdown">
-            <a
-              className="nav-link dropdown-toggle"
-              id="navbarDropdown"
-              href="#"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <i className="fas fa-user fa-fw"></i>
-            </a>
-            <ul
-              className="dropdown-menu dropdown-menu-end"
-              aria-labelledby="navbarDropdown"
-            >
-              <li>
-                <a className="dropdown-item" href="#!">
-                  Settings
-                </a>
-              </li>
-              <li>
-                <a className="dropdown-item" href="#!">
-                  Activity Log
-                </a>
-              </li>
-              <li>
-                <hr className="dropdown-divider" />
-              </li>
-              <li>
-                <a className="dropdown-item" href="#!">
-                  Logout
-                </a>
-              </li>
-            </ul>
-          </li>
-        </ul>
       </nav>
 
-      {/* Sidebar and Page Content */}
+      {/* Sidebar and Content */}
       <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
           <nav className="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
             <div className="sb-sidenav-menu">
               <div className="nav">
                 <div className="sb-sidenav-menu-heading">Home</div>
-                <a className="nav-link" href="index.html">
-                  <div className="sb-nav-link-icon">
-                    <i className="fa-solid fa-user"></i>
-                  </div>
-                  Profili im
-                </a>
-                <a className="nav-link" href="charts.html">
-                  <div className="sb-nav-link-icon">
-                    <i className="fa-solid fa-bars"></i>
-                  </div>
-                  Lista e Studenteve
-                </a>
-                <a className="nav-link" href="charts.html">
-                  <div className="sb-nav-link-icon">
-                    <i className="fa-solid fa-bars"></i>
-                  </div>
-                  Orari
-                </a>
-                <a className="nav-link" href="charts.html">
-                  <div className="sb-nav-link-icon">
-                    <i className="fa-solid fa-bars"></i>
-                  </div>
-                  Salla
-                </a>
-                <a className="nav-link" href="charts.html">
-                  <div className="sb-nav-link-icon">
-                    <i className="fa-solid fa-bars"></i>
-                  </div>
-                  Notimi
-                </a>
+                  <Link className="nav-link" to="/profili-im">
+                    <div className="sb-nav-link-icon"><i className="fa-solid fa-user"></i></div>
+                    Profili im
+                  </Link>
+
+                  <Link className="nav-link" to="/studentet">
+                    <div className="sb-nav-link-icon"><i className="fa-solid fa-bars"></i></div>
+                    Studentet
+                  </Link>
+
+                  <Link className="nav-link" to="/stafiakademik">
+                    <div className="sb-nav-link-icon"><i className="fa-solid fa-bars"></i></div>
+                    Stafi Akademik
+                  </Link>
+
+                  <Link className="nav-link" to="/grupi">
+                    <div className="sb-nav-link-icon"><i className="fa-solid fa-bars"></i></div>
+                    Grupi
+                  </Link>
+
+                  <Link className="nav-link" to="/lenda">
+                    <div className="sb-nav-link-icon"><i className="fa-solid fa-bars"></i></div>
+                    Lenda
+                  </Link>
               </div>
             </div>
           </nav>
         </div>
 
-        {/* Main Page Content */}
         <div id="layoutSidenav_content">
-          <main className="container-fluid">
-            
+          <main className="container-fluid p-4">
+            <h2 className="mb-4">Studentët e Fakultetit</h2>
 
+            <button 
+              type="button" 
+              className="btn btn-primary"
+              onClick={() => navigate('/add-student')} // 🧠 Këtu
+            >
+              ➕ Add Student
+            </button>
 
-            <div className="container mt-5">
-              <h2 className="mb-4">Studentët e Fakultetit</h2>
-
-
-              <div className="d-flex justify-content-between align-items-center mb-3">
-                <button type="button" className="btn btn-primary">
-                  ➕ Shto Student
-                </button>
-              </div>
-              <div className="d-flex justify-content-between align-items-center mb-3">
-                <button type="button" className="btn btn-primary">
-                  Edito Student
-                </button>
-              </div>
-
-              <table className="table table-striped table-bordered">
-                <thead className="thead-dark">
-                  <tr>
-                    <th>Emri</th>
-                    <th>Mbiemri</th>
-                    <th>Email</th>
-                    <th>Gjinia</th>
-                    <th>Datëlindja</th>
-                    <th>Nr Leternjoftimit</th>
-                    <th>Vendbanimi</th>
-                    <th>Telefoni</th>
-                    <th>Statusi</th>
-                    <th>Viti i Regjistrimit</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {students.map(student => (
-                    <tr key={student.id}>
-                      <td>{student.emri}</td>
-                      <td>{student.mbiemri}</td>
-                      <td>{student.email}</td>
-                      <td>{student.gjinia}</td>
-                      <td>{student.datelindja}</td>
-                      <td>{student.nrLeternjoftimit}</td>
-                      <td>{student.vendbanimi}</td>
-                      <td>{student.telefoni}</td>
-                      <td>{student.statusi}</td>
-                      <td>{student.vitiRegjistrimit}</td>
-                    </tr>
+            {/* Filtrat */}
+            <div className="row mb-3">
+              <div className="col-md-3">
+                <label>Filtro sipas Departamentit:</label>
+                <select 
+                  className="form-select"
+                  value={departamentiFilter}
+                  onChange={(e) => setDepartamentiFilter(e.target.value)}
+                >
+                  <option value="">Të gjithë departamentet</option>
+                  {uniqueDepartamente.map(dep => (
+                    <option key={dep} value={dep}>{dep}</option>
                   ))}
-                </tbody>
-              </table>
+                </select>
+              </div>
+
+              <div className="col-md-3">
+                <label>Filtro sipas Vitit të Regjistrimit:</label>
+                <select 
+                  className="form-select"
+                  value={vitiFilter}
+                  onChange={(e) => setVitiFilter(e.target.value)}
+                >
+                  <option value="">Të gjithë vitet</option>
+                  {uniqueVitet.map(vit => (
+                    <option key={vit} value={vit}>{vit}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="col-md-3">
+                <label>Filtro sipas Statusit:</label>
+                <select 
+                  className="form-select"
+                  value={statusiFilter}
+                  onChange={(e) => setStatusiFilter(e.target.value)}
+                >
+                  <option value="">Të gjithë statuset</option>
+                  {uniqueStatuset.map(status => (
+                    <option key={status} value={status}>{status}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="col-md-3">
+                <label>Filtro sipas Semestrit:</label>
+                <select
+                  className="form-select"
+                  value={semestriFilter}
+                  onChange={(e) => setSemestriFilter(e.target.value)}
+                >
+                  <option value="">Të gjithë semestrat</option>
+                  {uniqueSemestrat.map(semestri => (
+                    <option key={semestri} value={semestri}>{semestri}</option>
+                  ))}
+                </select>
+              </div>
             </div>
 
-
-
+            {/* Tabela */}
+            <table className="table table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th>Emri</th>
+                  <th>Mbiemri</th>
+                  <th>Email</th>
+                  <th>Nr Peronsal</th>
+                  <th>Gjinia</th>
+                  <th>Ditelinja</th>
+                  <th>Telefoni</th>
+                  <th>Statusi</th>
+                  <th>Departamenti</th>
+                  <th>Semestri</th>
+                  <th>Viti i Regjistrimit</th>
+                  <th>Edit</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredStudents.map(student => (
+                  <tr key={student.id}>
+                    <td>{student.emri}</td>
+                    <td>{student.mbiemri}</td>
+                    <td>{student.email}</td>
+                    <td>{student.nrpersonal}</td>
+                    <td>{student.gjinia}</td>
+                    <td>{student.datelindja}</td>
+                    <td>{student.telefoni}</td>
+                    <td>{student.statusi}</td>
+                    <td>{student.departamenti}</td>
+                    <td>{student.semestri}</td>
+                    <td>{student.vitiRegjistrimit}</td>
+                    <td>
+                      <button className="btn btn-warning btn-sm me-2"  onClick={() => navigate('/edit-student')}>Edit</button>
+                      </td>
+                      <td>
+                      <button className="btn btn-danger btn-sm"  onClick={() => navigate('/delete-student')}>Delete</button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
 
           </main>
         </div>
       </div>
 
-      <div className="footer">
-        <h4>© 2012 - 2025 KOLEGJI UBT - Lagjja KALABRIA Nr.56., Prishtinë, Kosovë</h4>
+      {/* Footer */}
+      <div class="footer">
+        <h4>
+          © 2012 - 2025 KOLEGJI UBT - Lagjja KALABRIA Nr.56., Prishtinë, Kosovë
+        </h4>
         <h4>Tel:+383 38 541 400 | Fax:+383 38 542 138 | info@ubt-uni.net</h4>
         <a href="www.smis.education">www.smis.education</a>
       </div>
     </div>
+    
+    
   );
 };
 
