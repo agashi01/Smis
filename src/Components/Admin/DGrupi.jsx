@@ -162,7 +162,7 @@ const DGrupi = () => {
 
             {/* Tabela */}
             <div className="table-responsive">
-              <table className="table table-striped table-bordered">
+              <table className="table table-striped table-bordered tabel-hover">
                 <thead className="">
                   <tr>
                     <th>Emri i Grupit</th>
@@ -177,17 +177,42 @@ const DGrupi = () => {
                 </thead>
                 <tbody>
                   {filteredGrupet.map(grupi => (
-                    <tr key={grupi.id}>
+                    <tr 
+                      key={grupi.id}
+                      onClick={() => navigate(`/view-grupi/${grupi.id}`)}
+                      style={{ cursor: 'pointer' }}
+                    >
                       <td>{grupi.emri}</td>
                       <td>{grupi.semestri}</td>
                       <td>{grupi.departamenti}</td>
                       <td>{grupi.kapaciteti}</td>
                       <td>{grupi.nrstudentave}</td>
-                      <td><button className="btn btn-warning btn-sm me-2"  onClick={() => navigate('/edit-grup')} >Edit</button> </td>
-                      <td><button className="btn btn-danger btn-sm"  onClick={() => navigate('/delete-grup')}>Delete</button></td>
+                      <td>
+                        <button 
+                          className="btn btn-warning btn-sm me-2"  
+                          onClick={(e) => {
+                            e.stopPropagation(); // 🧠 Mos lejo që klikimi të shkojë në tr
+                            navigate(`/edit-grup/${grupi.id}`);
+                          }}
+                        >
+                          Edit
+                        </button>
+                      </td>
+                      <td>
+                        <button 
+                          className="btn btn-danger btn-sm"  
+                          onClick={(e) => {
+                            e.stopPropagation(); // 🧠 Mos lejo që klikimi të shkojë në tr
+                            navigate(`/delete-grup/${grupi.id}`);
+                          }}
+                        >
+                          Delete
+                        </button>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
+
               </table>
             </div>
           </main>

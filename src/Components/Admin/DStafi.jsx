@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import "./Style.css";
 import $ from "jquery";
 import "datatables.net";
+import { Link } from 'react-router-dom';
 
 const DStafi = () => {
   const [staff, setStaff] = useState([]);
@@ -73,10 +74,30 @@ const DStafi = () => {
             <div className="sb-sidenav-menu">
               <div className="nav">
                 <div className="sb-sidenav-menu-heading">Home</div>
-                <a className="nav-link" href="#">
-                  <div className="sb-nav-link-icon"><i className="fa-solid fa-user"></i></div>
-                  Profili im
-                </a>
+                <Link className="nav-link" to="/profili-im">
+                    <div className="sb-nav-link-icon"><i className="fa-solid fa-user"></i></div>
+                    Profili im
+                  </Link>
+
+                  <Link className="nav-link" to="/studentet">
+                    <div className="sb-nav-link-icon"><i className="fa-solid fa-bars"></i></div>
+                    Studentet
+                  </Link>
+
+                  <Link className="nav-link" to="/stafiakademik">
+                    <div className="sb-nav-link-icon"><i className="fa-solid fa-bars"></i></div>
+                    Stafi Akademik
+                  </Link>
+
+                  <Link className="nav-link" to="/grupi">
+                    <div className="sb-nav-link-icon"><i className="fa-solid fa-bars"></i></div>
+                    Grupi
+                  </Link>
+
+                  <Link className="nav-link" to="/lenda">
+                    <div className="sb-nav-link-icon"><i className="fa-solid fa-bars"></i></div>
+                    Lenda
+                  </Link>
               </div>
             </div>
           </nav>

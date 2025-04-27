@@ -38,7 +38,7 @@ const TabbedForm = () => {
         {activeTab === "info" && (
           <>
             <div className="form-row mb-2">
-              <label className="form-label custom-label">ID e Studentit</label>
+              <label className="form-label custom-label">ID </label>
               <input
                 type="text"
                 className="form-control form-control-sm custom-input"

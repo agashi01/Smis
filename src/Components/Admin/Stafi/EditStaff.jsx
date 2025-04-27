@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState } from "react";
+import { Link } from 'react-router-dom';
 
 const EditStaff = () => {
   const [staffData, setStaffData] = useState({
@@ -52,18 +53,30 @@ const EditStaff = () => {
             <div className="sb-sidenav-menu">
               <div className="nav">
                 <div className="sb-sidenav-menu-heading">Home</div>
-                <a className="nav-link" href="index.html">
-                  <div className="sb-nav-link-icon">
-                    <i className="fa-solid fa-user"></i>
-                  </div>
-                  Profili im
-                </a>
-                <a className="nav-link" href="charts.html">
-                  <div className="sb-nav-link-icon">
-                    <i className="fa-solid fa-bars"></i>
-                  </div>
-                  Lista e Stafit
-                </a>
+                <Link className="nav-link" to="/profili-im">
+                    <div className="sb-nav-link-icon"><i className="fa-solid fa-user"></i></div>
+                    Profili im
+                  </Link>
+
+                  <Link className="nav-link" to="/studentet">
+                    <div className="sb-nav-link-icon"><i className="fa-solid fa-bars"></i></div>
+                    Studentet
+                  </Link>
+
+                  <Link className="nav-link" to="/stafiakademik">
+                    <div className="sb-nav-link-icon"><i className="fa-solid fa-bars"></i></div>
+                    Stafi Akademik
+                  </Link>
+
+                  <Link className="nav-link" to="/grupi">
+                    <div className="sb-nav-link-icon"><i className="fa-solid fa-bars"></i></div>
+                    Grupi
+                  </Link>
+
+                  <Link className="nav-link" to="/lenda">
+                    <div className="sb-nav-link-icon"><i className="fa-solid fa-bars"></i></div>
+                    Lenda
+                  </Link>
               </div>
             </div>
           </nav>
