@@ -1,18 +1,18 @@
-import React from "react";
-import "../Transkripta/Style.css";
-import { useEffect } from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useEffect } from "react";
+import "./Style.css";
 import $ from "jquery";
 import "datatables.net";
-import TabbedForm from "./TabbedForm";
 
-const Profili = () => {
+const Orari = () => {
   useEffect(() => {
-    $("#datatablesSimple").DataTable({
-      paging: false,
-      searching: false,
-      info: false,
+    $('#datatablesSimple').DataTable({
+      paging: true,
+      searching: true,
+      info: true
     });
   }, []);
+
   return (
     <div className="sb-nav-fixed">
       {/* Top Navbar */}
@@ -29,7 +29,6 @@ const Profili = () => {
         >
           <i className="fas fa-bars"></i>
         </button>
-
 
         {/* Navbar User Dropdown */}
         <ul className="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
@@ -74,75 +73,102 @@ const Profili = () => {
       {/* Sidebar and Page Content */}
       <div id="layoutSidenav">
         <div id="layoutSidenav_nav">
-          <nav
-            className="sb-sidenav accordion sb-sidenav-dark"
-            id="sidenavAccordion"
-          >
+          <nav className="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
             <div className="sb-sidenav-menu">
               <div className="nav">
                 <div className="sb-sidenav-menu-heading">Home</div>
                 <a className="nav-link" href="index.html">
                   <div className="sb-nav-link-icon">
-                    <i class="fa-solid fa-user"></i>
+                    <i className="fa-solid fa-user"></i>
                   </div>
                   Profili im
                 </a>
-
                 <a className="nav-link" href="charts.html">
                   <div className="sb-nav-link-icon">
-                    <i class="fa-solid fa-bars"></i>
+                    <i className="fa-solid fa-bars"></i>
                   </div>
-                  Transkripta
-                </a>
-
-                <div className="sb-sidenav-menu-heading">Provimet</div>
-                <a className="nav-link" href="charts.html">
-                  <div className="sb-nav-link-icon">
-                    <i class="fa-solid fa-newspaper"></i>
-                  </div>
-                  Provimet e paraqitura
-                </a>
-                <a className="nav-link" href="tables.html">
-                  <div className="sb-nav-link-icon">
-                    <i class="fa-solid fa-pen"></i>
-                  </div>
-                  Paraqit provimet
+                  Lista e Studenteve
                 </a>
                 <a className="nav-link" href="charts.html">
                   <div className="sb-nav-link-icon">
-                    <i class="fa-solid fa-barcode"></i>
+                    <i className="fa-solid fa-bars"></i>
                   </div>
-                  Pagesat
+                  Orari
+                </a>
+                <a className="nav-link" href="charts.html">
+                  <div className="sb-nav-link-icon">
+                    <i className="fa-solid fa-bars"></i>
+                  </div>
+                  Salla
+                </a>
+                <a className="nav-link" href="charts.html">
+                  <div className="sb-nav-link-icon">
+                    <i className="fa-solid fa-bars"></i>
+                  </div>
+                  Notimi
                 </a>
               </div>
-            </div>
-            <div className="sb-sidenav-footer">
-              <div className="small">Logged in as:</div>
-              Start Bootstrap
             </div>
           </nav>
         </div>
 
         {/* Main Page Content */}
         <div id="layoutSidenav_content">
-          <main>
-            <div className="container-fluid px-4">
-              <h2 className="mt-4">Profili im</h2>
-              <ol className="breadcrumb mb-4">
-                <li className="breadcrumb-item">
-                  <a href="index.html">Home</a>
-                </li>
-                <li className="breadcrumb-item active">Profili im</li>
-              </ol>
-              <TabbedForm />
-            </div>
+          <main className="container-fluid">
+            
+
+
+            <table className="table table-striped table-hover table-border mt-3 ml-1 mr-1">
+                <thead>
+                    <tr>
+                    <th className="text-center" colSpan={6} scope="col" >Orari</th>
+                    </tr>
+                    <tr>
+                    <th scope="col">Dita</th>
+                    <th scope="col">Fillon</th>
+                    <th scope="col">Mbaron</th>
+                    <th scope="col">Salla</th>
+                    <th scope="col">Lenda</th> 
+                    <th scope="col">Grupi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <th scope="row">E Hene</th>
+                    <td>9:00</td>
+                    <td>10:30</td>
+                    <td>D134</td>
+                    <td>Lende Laboratorike 1</td>
+                    <td>G3</td>
+                    </tr>
+                    <tr>
+                    <th scope="row">E Marte</th>
+                    <td>9:00</td>
+                    <td>10:30</td>
+                    <td>D134</td>
+                    <td>Shkenca Kompjuterike 1</td>
+                    <td>G2</td>
+                    </tr>
+                    <tr>
+                    <th scope="row">E Merkure</th>
+                    <td>9:00</td>
+                    <td>10:30</td>
+                    <td>D134</td>
+                    <td>Lende Laboratorike 1</td>
+                    <td>G1</td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+
+
           </main>
         </div>
       </div>
-      <div class="footer">
-        <h4>
-          © 2012 - 2025 KOLEGJI UBT - Lagjja KALABRIA Nr.56., Prishtinë, Kosovë
-        </h4>
+
+      <div className="footer">
+        <h4>© 2012 - 2025 KOLEGJI UBT - Lagjja KALABRIA Nr.56., Prishtinë, Kosovë</h4>
         <h4>Tel:+383 38 541 400 | Fax:+383 38 542 138 | info@ubt-uni.net</h4>
         <a href="www.smis.education">www.smis.education</a>
       </div>
@@ -150,4 +176,5 @@ const Profili = () => {
   );
 };
 
-export default Profili;
+export default Orari;
+

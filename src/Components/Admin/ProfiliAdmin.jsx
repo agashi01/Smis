@@ -3,9 +3,11 @@ import "../Transkripta/Style.css";
 import { useEffect } from "react";
 import $ from "jquery";
 import "datatables.net";
-import TabbedForm from "./TabbedForm";
+import TabbedForm from "../Profili/TabbedForm";
+import { Link } from "react-router-dom";
 
-const Profili = () => {
+
+const ProfiliAdmin = () => {
   useEffect(() => {
     $("#datatablesSimple").DataTable({
       paging: false,
@@ -81,39 +83,30 @@ const Profili = () => {
             <div className="sb-sidenav-menu">
               <div className="nav">
                 <div className="sb-sidenav-menu-heading">Home</div>
-                <a className="nav-link" href="index.html">
-                  <div className="sb-nav-link-icon">
-                    <i class="fa-solid fa-user"></i>
-                  </div>
-                  Profili im
-                </a>
+                <Link className="nav-link" to="/profili-im">
+                    <div className="sb-nav-link-icon"><i className="fa-solid fa-user"></i></div>
+                    Profili im
+                  </Link>
 
-                <a className="nav-link" href="charts.html">
-                  <div className="sb-nav-link-icon">
-                    <i class="fa-solid fa-bars"></i>
-                  </div>
-                  Transkripta
-                </a>
+                  <Link className="nav-link" to="/studentet">
+                    <div className="sb-nav-link-icon"><i className="fa-solid fa-bars"></i></div>
+                    Studentet
+                  </Link>
 
-                <div className="sb-sidenav-menu-heading">Provimet</div>
-                <a className="nav-link" href="charts.html">
-                  <div className="sb-nav-link-icon">
-                    <i class="fa-solid fa-newspaper"></i>
-                  </div>
-                  Provimet e paraqitura
-                </a>
-                <a className="nav-link" href="tables.html">
-                  <div className="sb-nav-link-icon">
-                    <i class="fa-solid fa-pen"></i>
-                  </div>
-                  Paraqit provimet
-                </a>
-                <a className="nav-link" href="charts.html">
-                  <div className="sb-nav-link-icon">
-                    <i class="fa-solid fa-barcode"></i>
-                  </div>
-                  Pagesat
-                </a>
+                  <Link className="nav-link" to="/stafiakademik">
+                    <div className="sb-nav-link-icon"><i className="fa-solid fa-bars"></i></div>
+                    Stafi Akademik
+                  </Link>
+
+                  <Link className="nav-link" to="/grupi">
+                    <div className="sb-nav-link-icon"><i className="fa-solid fa-bars"></i></div>
+                    Grupi
+                  </Link>
+
+                  <Link className="nav-link" to="/lenda">
+                    <div className="sb-nav-link-icon"><i className="fa-solid fa-bars"></i></div>
+                    Lenda
+                  </Link>
               </div>
             </div>
             <div className="sb-sidenav-footer">
@@ -150,4 +143,4 @@ const Profili = () => {
   );
 };
 
-export default Profili;
+export default ProfiliAdmin;
